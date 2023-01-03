@@ -18,7 +18,7 @@ function Register() {
   const navigate = useNavigate();
 
   // estado para manejar el mensaje de error y enviarlo al usuario
-  const [error, setError] = useState();
+  const [error, setError] = useState('');
 
   // hacer algo con el submit
   const handleSubmit = async (e) => {
@@ -33,12 +33,12 @@ function Register() {
       // ir al home despues de registrar
       navigate("/");
     } catch (error) {
-      // menejo de errores
       console.log(error);
-      if (error.code === "auth/internal-error") setError("Correo invalido.");
+      // menejo de errores
+      if (error.code === "auth/invalid-email") setError("Ingresa un email");
       else if (error.code === "auth/weak-password")
         setError("La contrase;a debe tener al menos 6 digitos.");
-      else if (error.code === "auth/email-alredy-in-use")
+      else if (error.code === "auth/email-already-in-use")
         setError("Email ya registrado.");
     }
   };
