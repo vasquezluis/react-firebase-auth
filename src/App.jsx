@@ -7,13 +7,21 @@ import Register from "./components/Register";
 
 // importar proveedor
 import { AuthProvider } from "./context/authContext";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
   return (
     <div className="bg-slate-300 h-screen text-black flex">
       <AuthProvider>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoutes>
+                <Home />
+              </ProtectedRoutes>
+            }
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
